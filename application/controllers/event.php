@@ -33,6 +33,7 @@ class Event extends CI_Controller {
 	//	echo $this->session->userdata('group_dealer_id');exit;
 	//	echo $this->session->userdata('outlet_dealer_id');exit;
 		
+		
 		$data['menu_dashboard']=$this->menu_dashboard;
 		$data['menu_master']=$this->menu_master;
 		$data['menu_setting']=$this->menu_setting;

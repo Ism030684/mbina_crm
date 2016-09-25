@@ -25,7 +25,7 @@ class event_model extends CI_Model
 	
 	function pre_event()
 	{
-		$query = $this->db->query("select * from t_event_pre_event_list");
+		$query = $this->db->query("select * from t_event_pre_list");
 		
 		if ($query->num_rows() > 0)
 		{

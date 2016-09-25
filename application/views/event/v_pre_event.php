@@ -57,7 +57,7 @@
 						<h3>							
 							<a href="<? echo base_url()?>event/pre_event_add"><button type="button" class="btn btn-default btn-xs"><i class="fa  fa-flag"></i>	Add Pre Event</button></a>
 						</h3>
-							 <em> - <a href="http://datatables.net/" target="_blank">jQuery Data Table</a> with sorting feature, live search and pagination</em></div>
+							</div>
 						<div class="widget-content">
 							<table id="featured-datatable" class="table table-sorting table-striped table-hover datatable">
 								<thead>

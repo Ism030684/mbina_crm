@@ -22,8 +22,53 @@
 	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="<?php echo base_url();?>assets/ico/kingadmin-favicon72x72.png">
 	<link rel="apple-touch-icon-precomposed" sizes="57x57" href="<?php echo base_url();?>assets/ico/kingadmin-favicon57x57.png">
 	<link rel="shortcut icon" href="<?php echo base_url();?>assets/ico/favicon.png">
+	<link rel="stylesheet" href="<?php echo base_url();?>assets/datepicker/jquery-ui.css">
+	
+	<script src="<?php echo base_url();?>assets/datepicker/jquery-1.12.4.js"></script>
+  <script src="<?php echo base_url();?>assets/datepicker/jquery-ui.js"></script>
 </head>
+ <script>
+  $( function() {
+    $( "#datepicker" ).datepicker({ dateFormat: 'yy-mm-dd' });
+    $( "#datepicker2" ).datepicker({ dateFormat: 'yy-mm-dd' });
 
+    var availableTags = [
+      "ActionScript",
+      "AppleScript",
+      "Asp",
+      "BASIC",
+      "C",
+      "C++",
+      "Clojure",
+      "COBOL",
+      "ColdFusion",
+      "Erlang",
+      "Fortran",
+      "Groovy",
+      "Haskell",
+      "Java",
+      "JavaScript",
+      "Lisp",
+      "Perl",
+      "PHP",
+      "Python",
+      "Ruby",
+      "Scala",
+      "Scheme"
+    ];
+    $( "#display1" ).autocomplete({
+      source: availableTags
+    });
+     $( "#display2" ).autocomplete({
+      source: availableTags
+    });
+
+    $( "#display3" ).autocomplete({
+      source: availableTags
+    });
+
+  } );
+  </script>
 <body class="sidebar-fixed topnav-fixed bootstrap-elements">
 	<!-- WRAPPER -->
 	<div id="wrapper" class="wrapper">
@@ -52,7 +97,7 @@
 			<div class="content">
 				<div class="main-header">
 					<h2>Pre Event</h2>
-					
+															
 				</div>
 				<div class="main-content">
 					<div class="row">
@@ -61,91 +106,92 @@
 							<div class="widget">
 								<!-- <div class="widget-header">
 									<h3><i class="fa fa-edit"></i> Basic Input</h3></div>-->
+						<?php echo form_open(base_url('event/add_pre_event'), array('id'=>'myform','class'=>'form-horizontal','enctype'=>'multipart/form-data'));?>
 								<div class="widget-content">
 									<div class="form-horizontal">
 										<div class="form-group">
 											<label class="col-md-2 control-label">Dealer Area</label>
 											<div class="col-md-2">
-												<input type="text" class="form-control" placeholder="">
+												<input type="text" class="form-control" name="dealer_area" placeholder="">
 											</div>
 											<label class="col-md-1 control-label">Item</label>
 											<div class="col-md-2">
-												<input type="text" class="form-control" placeholder="">
+												<input type="text" class="form-control" name="item" placeholder="">
 											</div>
 											<label class="col-md-1 control-label">Dealer</label>
 											<div class="col-md-2">
-												<input type="text" class="form-control" placeholder="">
+												<input type="text" class="form-control" name="dealer" placeholder="">
 											</div>
 										</div>
 										
 											<div class="form-group">
 											<label class="col-md-2 control-label">Activity</label>
 											<div class="col-md-2">
-												<input type="text" class="form-control" placeholder="">
+												<input type="text" class="form-control" placeholder="" name="activity">
 											</div>
 											<label class="col-md-1 control-label">Description</label>
 											<div class="col-md-2">
-												<input type="text" class="form-control" placeholder="">
+												<input type="text" class="form-control" placeholder="" name="description">
 											</div>
 											<label class="col-md-1 control-label">Location</label>
 											<div class="col-md-2">
-												<input type="text" class="form-control" placeholder="">
+												<input type="text" class="form-control" placeholder="" name="location">
 											</div>
 										</div>
 										
 										<div class="form-group">
 											<label class="col-md-2 control-label">Detail Location</label>
 											<div class="col-md-2">
-												<input type="text" class="form-control" placeholder="">
+												<input type="text" class="form-control" placeholder="" name="detail_location">
 											</div>
 											<label class="col-md-1 control-label">City</label>
 											<div class="col-md-2">
-												<input type="text" class="form-control" placeholder="">
+												<input type="text" class="form-control" placeholder="" name="city">
 											</div>
 											<label class="col-md-1 control-label">Year</label>
 											<div class="col-md-2">
-												<input type="text" class="form-control" placeholder="">
+												<input type="text" class="form-control" placeholder="" name="year">
 											</div>
 										</div>
 										
 										<div class="form-group">
 											<label class="col-md-2 control-label">Month</label>
 											<div class="col-md-2">
-												<input type="text" class="form-control" placeholder="">
+												<input type="text" class="form-control" placeholder="" name="month">
 											</div>
 											<label class="col-md-1 control-label">Date</label>
 											<div class="col-md-2">
-												<input type="text" class="form-control" placeholder="">
+												<input type="text" class="form-control" placeholder="" id="datepicker" name="date">
 											</div>
-											<label class="col-md-1 control-label">Display1</label>
+											<label class="col-md-1 control-label">Display 1</label>
 											<div class="col-md-2">
-												<input type="text" class="form-control" placeholder="">
+												<input type="text" class="form-control" placeholder="" id="display1" name="display_1">
 											</div>
 										</div>
 										
 											<div class="form-group">
 											<label class="col-md-2 control-label">Display 2</label>
 											<div class="col-md-2">
-												<input type="text" class="form-control" placeholder="">
+												<input type="text" class="form-control" placeholder="" id="display2" name="display_2">
 											</div>
 											<label class="col-md-1 control-label">Display 3</label>
 											<div class="col-md-2">
-												<input type="text" class="form-control" placeholder="">
+												<input type="text" class="form-control" placeholder="" name="display_3">
 											</div>
 											<label class="col-md-1 control-label">Display 4</label>
 											<div class="col-md-2">
-												<input type="text" class="form-control" placeholder="">
+												<input type="text" class="form-control" placeholder="" name="display_4">
 											</div>
 										</div>
 										
 										<div class="form-group">
 											<label class="col-md-2 control-label">Budget</label>
 											<div class="col-md-2">
-												<input type="text" class="form-control" placeholder="">
+												<input type="text" class="form-control" placeholder="" name="budget">
 											</div>
 											<label class="col-md-1 control-label">Submission Date</label>
 											<div class="col-md-2">
-												<input type="text" class="form-control" placeholder="">
+												<input type="text" class="form-control" placeholder="" name="submission_date" id="datepicker2">
 											</div>
 										
 										</div>
@@ -157,7 +203,8 @@
 								</div>
 							</div>
 							<!-- END BASIC INPUT -->
-					
+												<?php echo form_close();?>
+
 						</div>
 				
 					</div>
@@ -174,7 +221,7 @@
 	<!-- END WRAPPER -->
 	
 	<!-- Javascript -->
-	<script src="<?php echo base_url();?>assets/js/jquery/jquery-2.1.0.min.js"></script>
+	<!--  <script src="<?php// echo base_url();?>assets/js/jquery/jquery-2.1.0.min.js"></script>-->
 	<script src="<?php echo base_url();?>assets/js/bootstrap/bootstrap.js"></script>
 	<script src="<?php echo base_url();?>assets/js/plugins/modernizr/modernizr.js"></script>
 	<script src="<?php echo base_url();?>assets/js/plugins/bootstrap-tour/bootstrap-tour.custom.js"></script>

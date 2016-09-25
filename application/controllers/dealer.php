@@ -12,6 +12,7 @@ class Dealer extends CI_Controller {
 	var $menu_newsletter;
 	
 	
+	
 	function __construct()
 	{
 		parent::__construct();
