@@ -170,9 +170,7 @@ function test(id)
 											<th>No</th>
 											<th>Vehicle ID</th>
 											<th>Type</th>
-											<th>Year</th>
-											<th>Colour</th>
-											<th>Image</th>
+										
 											<th>Brochure</th>
 											<th>Action</th>
 										</tr>
@@ -189,24 +187,7 @@ function test(id)
 											<td><?php echo $i;?></td>
 											<td><?php echo $row->vehicle_id;?> </td>
 											<td><?php echo $row->vehicle_type;?></td>
-											<td><?php echo $row->year;?> </td>
-											<td>
-											<?php 
 											
-											$query = $this->db->query("select b.colour_name from t_set_vehicle_detil as a left join t_set_vehicle_colour b on b.colour_id=a.vehicle_colour_id  where a.vehicle_id='".$row->vehicle_id."'");
-											
-											foreach ($query->result() as $row2)
-											{
-											?>
-												<span class="simplecolorpicker icon" title="#c2c2c2" style="background-color: <?php echo $row2->colour_name;?>;" role="button" tabindex="0"></span>
-											
-											<?php 
-											}
-											?> 
-											
-										
-											</td>
-											<td><a href="#" onclick="modal_img('<?php echo $row->images; ?>')" ><?php echo $row->images; ?></a></td>
 											<td><a href="#" onclick="modal_pdf('<?php echo $row->brochure; ?>')"><?php echo $row->brochure; ?></a></td>
 											<td><span class="label label-success">EDIT</span> <a href="#" onclick="test(<?=$row->id;?>)"> <span class="label label-default">DELETE</span></a></td>
 										</tr>

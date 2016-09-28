@@ -1,5 +1,5 @@
 <?php
-
+/*controller dealer*/
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Dealer extends CI_Controller {
@@ -26,7 +26,6 @@ class Dealer extends CI_Controller {
 		is_logged_in();
 		$this->load->model(array('login_model'));
 	}
-	
 	
 	
 	

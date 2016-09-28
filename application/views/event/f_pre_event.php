@@ -33,40 +33,82 @@
     $( "#datepicker2" ).datepicker({ dateFormat: 'yy-mm-dd' });
 
     var availableTags = [
-      "ActionScript",
-      "AppleScript",
-      "Asp",
-      "BASIC",
-      "C",
-      "C++",
-      "Clojure",
-      "COBOL",
-      "ColdFusion",
-      "Erlang",
-      "Fortran",
-      "Groovy",
-      "Haskell",
-      "Java",
-      "JavaScript",
-      "Lisp",
-      "Perl",
-      "PHP",
-      "Python",
-      "Ruby",
-      "Scala",
-      "Scheme"
+    <?php
+    $query = $this->db->query("select * from t_set_vehicle");
+
+		foreach ($query->result() as $row)
+		{
+	?>
+		 "<?php  echo $row->vehicle_type;?>",   
+	<?
+		}
+    ?> 
     ];
+
+    var cityTags = [
+                         <?php
+                         $query = $this->db->query("select * from t_m_city");
+
+                     		foreach ($query->result() as $row)
+                     		{
+                     	?>
+                     		 "<?php  echo $row->city;?>",   
+                     	<?
+                     		}
+                         ?> 
+                         ];
+
+
+    var monthTags = [
+                    <?php
+                    $query = $this->db->query("select * from t_m_month");
+
+                		foreach ($query->result() as $row)
+                		{
+                	?>
+                		 "<?php  echo $row->month;?>",   
+                	<?
+                		}
+                    ?> 
+                    ];
+
+    var yearTags = [
+                     <?php
+                     $query = $this->db->query("select * from t_m_year");
+
+                 		foreach ($query->result() as $row)
+                 		{
+                 	?>
+                 		 "<?php  echo $row->year;?>",   
+                 	<?
+                 		}
+                     ?> 
+                     ];
+     
+    
     $( "#display1" ).autocomplete({
       source: availableTags
     });
      $( "#display2" ).autocomplete({
       source: availableTags
     });
-
-    $( "#display3" ).autocomplete({
-      source: availableTags
-    });
-
+     $( "#display3" ).autocomplete({
+         source: availableTags
+     });
+     $( "#display4" ).autocomplete({
+         source: availableTags
+     });
+     $( "#city" ).autocomplete({
+         source: cityTags
+     });
+     $( "#month" ).autocomplete({
+         source: monthTags
+     });
+     $( "#year" ).autocomplete({
+         source: yearTags
+     });
+     
+    
   } );
   </script>
 <body class="sidebar-fixed topnav-fixed bootstrap-elements">
@@ -107,94 +149,192 @@
 								<!-- <div class="widget-header">
 									<h3><i class="fa fa-edit"></i> Basic Input</h3></div>-->
 						<?php echo form_open(base_url('event/add_pre_event'), array('id'=>'myform','class'=>'form-horizontal','enctype'=>'multipart/form-data'));?>
+								<input type="hidden" name="id" value="<?php echo $id;?>">
 								<div class="widget-content">
 									<div class="form-horizontal">
 										<div class="form-group">
 											<label class="col-md-2 control-label">Dealer Area</label>
 											<div class="col-md-2">
-												<input type="text" class="form-control" name="dealer_area" placeholder="">
+												<input type="text" class="form-control" name="dealer_area" placeholder="" value="<?php echo $this->session->userdata('dealer_area');?>">
 											</div>
 											<label class="col-md-1 control-label">Item</label>
 											<div class="col-md-2">
-												<input type="text" class="form-control" name="item" placeholder="">
+												<select  class="form-control" name="item">
+											<option value="PRE EVENT">PRE EVENT</option>
+										<!--  	<option value="POST EVENT">POST EVENT</option>-->
+											</select>
+
+										
 											</div>
-											<label class="col-md-1 control-label">Dealer</label>
-											<div class="col-md-2">
-												<input type="text" class="form-control" name="dealer" placeholder="">
-											</div>
+											
 										</div>
 										
+										<div class="form-group">
+										<label class="col-md-2 control-label">Dealer</label>
+											<div class="col-md-5">
+												<input type="text" class="form-control" name="dealer" value="<?php echo $this->session->userdata('dealer_name');?>" placeholder="">
+											</div>
+										</div>
 											<div class="form-group">
 											<label class="col-md-2 control-label">Activity</label>
 											<div class="col-md-2">
-												<input type="text" class="form-control" placeholder="" name="activity">
+													
+											<select  class="form-control" name="activity">
+
+											
+											<?php 
+												$query = $this->db->query("select * from t_m_activity");
+												
+												foreach ($query->result() as $row)
+												{
+													if($row->activity==$activity){
+														$selectedActivity="selected";
+													}else{
+														$selectedActivity="";
+													}
+												?>
+												<option value="<?php echo $row->activity;?>" <?php echo $selectedActivity;?>><?php echo $row->activity;?></option>
+												<?php 
+												}
+												?>
+												
+											</select>
+
 											</div>
-											<label class="col-md-1 control-label">Description</label>
-											<div class="col-md-2">
-												<input type="text" class="form-control" placeholder="" name="description">
+									<label class="col-md-1 control-label">Location</label>
+											<div class="col-md-5">
+												<input type="text" class="form-control" placeholder="" name="location" value="<?php echo $location;?>">
 											</div>
-											<label class="col-md-1 control-label">Location</label>
-											<div class="col-md-2">
-												<input type="text" class="form-control" placeholder="" name="location">
+										</div>
+										<div class="form-group">
+										
+											<label class="col-md-2 control-label">Detail Location</label>
+											<div class="col-md-6">
+												<input type="text" class="form-control" placeholder="" name="detail_location" value="<?php echo $detail_location;?>">
+											</div>
+											
+										</div>
+										<div class="form-group">
+												<label class="col-md-2 control-label">Description</label>
+											<div class="col-md-6">
+												<input type="text" class="form-control" placeholder="" name="description" value="<?php echo $description;?>">
 											</div>
 										</div>
 										
 										<div class="form-group">
-											<label class="col-md-2 control-label">Detail Location</label>
+											
+											<label class="col-md-2 control-label">City</label>
+											
 											<div class="col-md-2">
-												<input type="text" class="form-control" placeholder="" name="detail_location">
+											<select  class="form-control" name="city">
+												<?php 
+												$query = $this->db->query("select * from t_m_city");
+												
+												foreach ($query->result() as $row)
+												{
+													if($row->city==$city){
+														$selected="selected";
+													}else{
+														$selected="";
+													}
+												?>
+												<option value="<?php echo $row->city;?>" <?php echo $selected;?>><?php echo $row->city;?></option>
+												<?php 
+												}
+												?>
+											</select>
+
+										
 											</div>
-											<label class="col-md-1 control-label">City</label>
-											<div class="col-md-2">
-												<input type="text" class="form-control" placeholder="" name="city">
-											</div>
+											
 											<label class="col-md-1 control-label">Year</label>
 											<div class="col-md-2">
-												<input type="text" class="form-control" placeholder="" name="year">
+												<select  class="form-control" name="year">
+												<?php 
+												$query = $this->db->query("select * from t_m_year");
+												
+												foreach ($query->result() as $row)
+												{
+													if($row->year==$year){
+														$selectyear="selected";
+													}else{
+														$selectyear="";
+													}
+												?>
+												<option value="<?php echo $row->year;?>" <?php echo $selectyear;?>><?php echo $row->year;?></option>
+												<?php 
+												}
+												?>
+											</select>
+											</div>
+											
+											<label class="col-md-1 control-label">Month</label>
+											<div class="col-md-2">
+												
+												<select  class="form-control" name="month">
+												<?php 
+												$query = $this->db->query("select * from t_m_month");
+												
+												foreach ($query->result() as $row)
+												{
+													if($row->month==$month){
+														$selectmonth="selected";
+													}else{
+														$selectmonth="";
+													}
+												?>
+												<option value="<?php echo $row->month;?>" <?php echo $selectmonth;?>><?php echo $row->month;?></option>
+												<?php 
+												}
+												?>
+											</select>
+											
 											</div>
 										</div>
 										
 										<div class="form-group">
-											<label class="col-md-2 control-label">Month</label>
+											
+											<label class="col-md-2 control-label">Date</label>
 											<div class="col-md-2">
-												<input type="text" class="form-control" placeholder="" name="month">
+												<input type="text" class="form-control" placeholder="" id="datepicker" name="date" value="<?php echo $date;?>">
 											</div>
-											<label class="col-md-1 control-label">Date</label>
+											
+											<label class="col-md-2 control-label">Submission Date</label>
 											<div class="col-md-2">
-												<input type="text" class="form-control" placeholder="" id="datepicker" name="date">
+												<input type="text" class="form-control" placeholder="" name="submission_date" id="datepicker2" value="<?php echo $submission_date;?>">
 											</div>
-											<label class="col-md-1 control-label">Display 1</label>
-											<div class="col-md-2">
-												<input type="text" class="form-control" placeholder="" id="display1" name="display_1">
-											</div>
+											
 										</div>
-										
-											<div class="form-group">
-											<label class="col-md-2 control-label">Display 2</label>
-											<div class="col-md-2">
-												<input type="text" class="form-control" placeholder="" id="display2" name="display_2">
-											</div>
-											<label class="col-md-1 control-label">Display 3</label>
-											<div class="col-md-2">
-												<input type="text" class="form-control" placeholder="" name="display_3">
-											</div>
-											<label class="col-md-1 control-label">Display 4</label>
-											<div class="col-md-2">
-												<input type="text" class="form-control" placeholder="" name="display_4">
-											</div>
-										</div>
-										
 										<div class="form-group">
 											<label class="col-md-2 control-label">Budget</label>
-											<div class="col-md-2">
-												<input type="text" class="form-control" placeholder="" name="budget">
+											<div class="col-md-3">
+												<input type="text" class="form-control" placeholder="" name="budget" value="<?php echo $budget;?>">
 											</div>
-											<label class="col-md-1 control-label">Submission Date</label>
-											<div class="col-md-2">
-												<input type="text" class="form-control" placeholder="" name="submission_date" id="datepicker2">
-											</div>
-										
+											
 										</div>
+										<div class="form-group">
+										<label class="col-md-2 control-label">Display 1</label>
+											<div class="col-md-3">
+												<input type="text" class="form-control" placeholder="" id="display1" name="display_1" value="<?php echo $display_1;?>">
+											</div>
+											<label class="col-md-1 control-label">Display 2</label>
+											<div class="col-md-3">
+												<input type="text" class="form-control" placeholder="" id="display2" name="display_2" value="<?php echo $display_2;?>">
+											</div>
+										</div>
+											<div class="form-group">
+											
+											<label class="col-md-2 control-label">Display 3</label>
+											<div class="col-md-3">
+												<input type="text" class="form-control" placeholder="" name="display_3" id="display3" value="<?php echo $display_3;?>">
+											</div>
+											<label class="col-md-1 control-label">Display 4</label>
+											<div class="col-md-3">
+												<input type="text" class="form-control" placeholder="" name="display_4" id="display4" value="<?php echo $display_4;?>">
+											</div>
+										</div>
+										
+									
 										
 										<button type="submit" class="btn btn-info btn-sm">Save</button>
 									 		<button type="button" class="btn btn-warning btn-sm" onclick="cancel()">Cancel</button>
@@ -203,7 +343,7 @@
 								</div>
 							</div>
 							<!-- END BASIC INPUT -->
-												<?php echo form_close();?>
+							<?php echo form_close();?>
 
 						</div>
 				
@@ -227,6 +367,7 @@
 	<script src="<?php echo base_url();?>assets/js/plugins/bootstrap-tour/bootstrap-tour.custom.js"></script>
 	<script src="<?php echo base_url();?>assets/js/plugins/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 	<script src="<?php echo base_url();?>assets/js/king-common.js"></script>
+	
 	<script src="demo-style-switcher/assets/js/deliswitch.js"></script>
 </body>
 

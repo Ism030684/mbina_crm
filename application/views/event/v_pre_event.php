@@ -24,7 +24,47 @@
 	<link rel="shortcut icon" href="<?php echo base_url();?>assets/ico/favicon.png">
 </head>
 
+<script type="text/javascript">
+function id_param(id){
+	document.getElementById("id").value=id;
+
+  }
+
+
+function test(id)
+{
+	id_param(id);
+	$('#myModal').modal({backdrop: 'static', keyboard: false}) 
+}
+
+</script>
 <body class="sidebar-fixed topnav-fixed ">
+<!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+         <!-- <h4 class="modal-title">ALERT</h4> -->
+        </div>
+          <?php echo form_open(base_url('event/pre_event_delete'), array('id'=>'myform','class'=>'form-horizontal'));?>
+        <input type="hidden" name="id" id="id" value="">
+        <div class="modal-body">
+          <p> Are you sure delete data ?</p>
+        </div>
+        <div class="modal-footer">
+           <button type="submit" class="btn btn-primary">Delete </button>
+        
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        </div>
+                <?php echo form_close();?>
+        
+      </div> 
+    </div>
+  </div>
+
+  <!--  end modal -->
 	<!-- WRAPPER -->
 	<div id="wrapper" class="wrapper">
 	<?php echo $this->load->view('include/top_bar');?>
@@ -49,7 +89,7 @@
 					
 				</div>
 				<div class="main-content">
-				
+					<?=msg_block();?>
 		
 					<!-- FEATURED DATA TABLE -->
 					<div class="widget widget-table">
@@ -63,8 +103,8 @@
 								<thead>
 									<tr>
 										<th>Year</th>
-										<th>Group Dealer</th>
 										<th>Dealer </th>
+										<th>budget </th>
 										<th>Created</th>
 										<th>Action</th>
 									</tr>
@@ -77,10 +117,14 @@
 									?>
 									<tr>
 										<td><?php echo $row->year;?></td>
-										<td><?php echo $row->group_dealer_id;?></td>
-										<td><?php echo $row->dealer_id;?>&nbsp;</td>
+										<td><?php echo $row->dealer_name;?>&nbsp;</td>
+										<td><?php echo number_format($row->budget);?></td>
 										<td><?php echo $row->created;?></td>
-										<td><a href="<?php echo base_url('event/detail_pre_event/')?><?php echo base64_encode($row->id);?>">Details</a></td>
+									<td>
+											<a href="<?php echo base_url()?>event/pre_event_add/<?=base64_encode(($row->id))?>"><span class="label label-success">EDIT</span></a>
+											<a href="#" onclick="test(<?=$row->id;?>)"><span class="label label-default">DELETE</span></a>
+											<a href="<?php echo base_url()?>event/pre_event_report/<?=base64_encode(($row->id))?>"><span class="label label-success">REPORT</span></a>
+											</td>
 									</tr>
 									<?php 
 										}

@@ -10,8 +10,10 @@ class login_model extends CI_Model {
 	function get_users($uid,$pass)
 	{	
 		//cek authentikasi nya
-		$sql = "select *
-				from t_users where username='".$uid."' and password='".$pass."'";
+		$sql = "select a.*,b.area,b.outlet,b.outlet_id
+				from t_users a 
+				left join t_outlet_dealer b on outlet_id=a.outlet_dealer_id
+				where a.username='".$uid."' and a.password='".$pass."'";
 				
 		$query = $this->db->query($sql);
 		if($query->num_rows()!==0)

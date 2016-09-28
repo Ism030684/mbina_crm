@@ -1015,6 +1015,7 @@ class Master extends CI_Controller {
 				$data['dt']['outlet_id'] = $get->outlet_id;
 				//$data['dt']['group_dealer_id'] = $get->group_dealer_id;
 				$data['dt']['outlet'] = $get->outlet;
+				$data['dt']['area'] = $get->area;
 				$data['dt']['address'] = $get->address;
 				$data['dt']['contact'] = $get->contact;
 				$data['dt']['sign_prepared_by'] = $get->sign_prepared_by;
@@ -1027,9 +1028,10 @@ class Master extends CI_Controller {
 		}else{
 			//declare new insert
 			$data['dt']['id']='';
-			$data['dt']['outlet_id'] = random_string('numeric', 4);
+			$data['dt']['outlet_id'] = '';
 			//$data['dt']['group_dealer_id'] ='';
 			$data['dt']['outlet'] = '';
+			$data['dt']['area'] = '';
 			$data['dt']['address'] = '';
 			$data['dt']['contact'] = '';
 			$data['dt']['sign_prepared_by']='';
@@ -1072,6 +1074,7 @@ class Master extends CI_Controller {
 						'outlet' => $this->input->post('outlet'),
 						'address' => $this->input->post('address'),
 						'contact' => $this->input->post('contact'),	
+						'area' => $this->input->post('area'),
 						'sign_prepared_by' => $this->input->post('sign_prepared_by'),
 						'sign_acknowledged_by' => $this->input->post('sign_acknowledged_by')
 				);
@@ -1087,6 +1090,7 @@ class Master extends CI_Controller {
 						'group_dealer_id' => $this->input->post('group_dealer_id'),
 						'outlet' => $this->input->post('outlet'),
 						'address' => $this->input->post('address'),
+						'area' => $this->input->post('area'),
 						'contact' => $this->input->post('contact'),
 						'sign_prepared_by' => $this->input->post('sign_prepared_by'),
 						'sign_acknowledged_by' => $this->input->post('sign_acknowledged_by')
@@ -1105,6 +1109,7 @@ class Master extends CI_Controller {
 			$data['dt']['outlet_id'] = $this->input->post('outlet_id');
 			$data['dt']['group_dealer_id'] = $this->input->post('group_dealer_id');
 			$data['dt']['outlet'] = $this->input->post('outlet');
+			$data['dt']['area'] = $this->input->post('area');
 			$data['dt']['contact'] = $this->input->post('contact');
 			$data['dt']['address'] = $this->input->post('address');
 			$data['dt']['sign_prepared_by'] = $this->input->post('sign_prepared_by');

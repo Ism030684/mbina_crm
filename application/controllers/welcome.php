@@ -41,6 +41,9 @@ class welcome extends CI_Controller {
 					'group_dealer_id'=>$dt->group_dealer_id,
 					'outlet_dealer_id'=>$dt->outlet_dealer_id,
 					'photo'=>$dt->photo,
+					'dealer_area'=>$dt->area,
+					'dealer_name'=>$dt->outlet,
+					'dealer_id'=>$dt->outlet_id,
 					'is_mbina'=>$dt->is_mbina,
 					'is_logged_in' => TRUE
 			);

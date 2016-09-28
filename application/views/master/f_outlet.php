@@ -118,7 +118,13 @@
 												<input type="text" class="form-control" name="sign_acknowledged_by" value="<?php echo $dt['sign_acknowledged_by'];?>" placeholder="" autocomplete="off">
 											</div>
 										</div>
-									
+										<div class="form-group">
+											<label class="col-md-2 control-label">Outlet Area</label>
+											<div class="col-md-3">
+												<input type="text" class="form-control" name="area" value="<?php echo $dt['area'];?>" placeholder="" autocomplete="off">
+											</div>
+										
+										</div>
 											<button type="submit" class="btn btn-info btn-sm">Save</button>
 										<button type="button" class="btn btn-warning btn-sm" onclick="cancel()">Cancel</button>
 									</div>
