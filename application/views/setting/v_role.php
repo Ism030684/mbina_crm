@@ -27,8 +27,10 @@
 <script type="text/javascript">
  function check(id_users_role,id_menu)
  {
+
+	 //alert(document.getElementById("menu1").checked );
 	// alert(id_menu);
-     
+     //alert(id_users_role);
  	  $.ajax({
  		  url: '<?php echo base_url()?>setting/role_add/' + id_users_role + '/' + id_menu,
  		  success: function(data) {

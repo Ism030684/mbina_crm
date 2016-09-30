@@ -65,6 +65,7 @@ function test(id)
   </div>
 
   <!--  end modal -->
+  
 	<!-- WRAPPER -->
 	<div id="wrapper" class="wrapper">
 	<?php echo $this->load->view('include/top_bar');?>
@@ -104,7 +105,8 @@ function test(id)
 									<tr>
 										<th>Year</th>
 										<th>Dealer </th>
-										<th>budget </th>
+										<th>Budget </th>
+										
 										<th>Created</th>
 										<th>Action</th>
 									</tr>
@@ -121,9 +123,9 @@ function test(id)
 										<td><?php echo number_format($row->budget);?></td>
 										<td><?php echo $row->created;?></td>
 									<td>
-											<a href="<?php echo base_url()?>event/pre_event_add/<?=base64_encode(($row->id))?>"><span class="label label-success">EDIT</span></a>
-											<a href="#" onclick="test(<?=$row->id;?>)"><span class="label label-default">DELETE</span></a>
-											<a href="<?php echo base_url()?>event/pre_event_report/<?=base64_encode(($row->id))?>"><span class="label label-success">REPORT</span></a>
+											<a href="<?php echo base_url()?>event/pre_event_add/<?=base64_encode(($row->idx))?>"><span class="label label-success">EDIT</span></a>
+											<a href="#" onclick="test(<?=$row->idx;?>)"><span class="label label-default">DELETE</span></a>
+											<a href="<?php echo base_url()?>event/pre_event_report/<?=base64_encode(($row->idx))?>"><span class="label label-success">REPORT</span></a>
 											</td>
 									</tr>
 									<?php 

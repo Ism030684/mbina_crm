@@ -8,21 +8,43 @@ class menu_model extends CI_Model
         parent::__construct();
     }
     
-    
-    function get_menu_active($mod_active)
+    function get_parent($kode_parent)
     {
-    	if($mod_active=="master")
+    	$query = $this->db->query("select b.parent from t_users_role_menu a
+    			left join t_menu b on b.kode=a.code_menu
+    			where a.id_users_role=".$this->session->userdata('id_users_role')." and b.enabled=1 and b.parent='".$kode_parent."'");
+    	
+    	if ($query->num_rows() > 0)
     	{
-			$data['menu_master']=array('sub_menu_open_master'=>"sub-menu open","active_master"=>"active","icon_master"=>"toggle-icon fa fa-angle-down","active_users"=>"active");
-			$data['menu_setting']=array('sub_menu_open_setting'=>"sub-menu ","active_setting"=>"","icon_setting"=>"toggle-icon fa fa-angle-left");
-				
-    	}else if ($mod_active=="setting"){
-    		$data['menu_master']=array('sub_menu_open_master'=>"sub-menu","active_master"=>"active","icon_master"=>"toggle-icon fa fa-angle-left");
-			$data['menu_setting']=array('sub_menu_open_setting'=>"sub-menu open","active_setting"=>"active","icon_setting"=>"toggle-icon fa fa-angle-down");
-		
+    		foreach ($query->result() as $row)
+    		{
+    			return $row->parent;
+    			 
+    		}
+    	}else{
+    		return FALSE;
     	}
-    	return $data;
     }
+    
+    function get_menu($kode)
+    {
+    	$query = $this->db->query("select a.code_menu from t_users_role_menu a 
+    			left join t_menu b on b.kode=a.code_menu
+    			where a.id_users_role=".$this->session->userdata('id_users_role')." and b.enabled=1 and b.kode='".$kode."'");
+    
+    	if ($query->num_rows() > 0)
+    	{
+    		foreach ($query->result() as $row)
+    		{
+    			return $row->code_menu;
+    			
+    		}
+    	}else{
+    		return FALSE;
+    	}
+    
+    }
+    
     
     
     

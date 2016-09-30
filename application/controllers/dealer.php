@@ -22,6 +22,7 @@ class Dealer extends CI_Controller {
 		$this->menu_dashboard=array('sub_menu_open_dashboard'=>"sub-menu","active_dashboard"=>"","icon_dashboard"=>"toggle-icon fa fa-angle-left");
 		$this->menu_dealer=array('sub_menu_open_dealer'=>"sub-menu open","active_dealer"=>"active","icon_dealer"=>"toggle-icon fa fa-angle-left");
 		$this->menu_newsletter=array('sub_menu_open_newsletter'=>"sub-menu","active_newsletter"=>"","icon_newsletter"=>"toggle-icon fa fa-angle-left");
+		$this->menu_marketing=array('sub_menu_open_marketing'=>"sub-menu","active_marketing"=>"","icon_marketing"=>"toggle-icon fa fa-angle-left");
 		
 		is_logged_in();
 		$this->load->model(array('login_model'));
@@ -38,6 +39,7 @@ class Dealer extends CI_Controller {
 		$data['menu_event']=$this->menu_event;
 		$data['menu_dealer']=$this->menu_dealer;
 		$data['menu_newsletter']=$this->menu_newsletter;
+		$data['menu_marketing']=$this->menu_marketing;
 		
 		$this->load->view('dealer/v_mail',$data);
 	}
@@ -65,6 +67,7 @@ class Dealer extends CI_Controller {
 		$data['menu_event']=$this->menu_event;
 		$data['menu_dealer']=$this->menu_dealer;
 		$data['menu_newsletter']=$this->menu_newsletter;
+		$data['menu_marketing']=$this->menu_marketing;
 		
 		$this->load->view('dealer/v_customer',$data);
 		
@@ -78,7 +81,7 @@ class Dealer extends CI_Controller {
 		$data['menu_event']=$this->menu_event;
 		$data['menu_dealer']=$this->menu_dealer;
 		$data['menu_newsletter']=$this->menu_newsletter;
-		
+		$data['menu_marketing']=$this->menu_marketing;
 		$this->load->view('dealer/v_leads',$data);
 		
 	}

@@ -56,10 +56,14 @@ class Setting extends CI_Controller {
 		$id_users_role=$this->uri->segment(3);
 		$id_menu=$this->uri->segment(4);
 	
-		$this->db->where('code_menu', $id_menu);
-		$this->db->where('id_users_role', $id_users_role);
-		$this->db->delete('t_users_role_menu');
+		$query = $this->db->query("select * from t_users_role_menu where code_menu='".$id_menu."' and id_users_role='".$id_users_role."' ");
 		
+		foreach ($query->result() as $row)
+		{
+			$id=$row->id;
+		}
+		
+		if ($id ==""){
 			$data = array(
 					'id_users_role' => $id_users_role,
 					'code_menu' => $id_menu,
@@ -67,7 +71,11 @@ class Setting extends CI_Controller {
 			);
 			
 			$this->db->insert('t_users_role_menu', $data);
-		
+		}else{
+			$this->db->where('code_menu', $id_menu);
+			$this->db->where('id_users_role', $id_users_role);
+			$this->db->delete('t_users_role_menu');
+		}
 	}
 	
 	function group_dealer()

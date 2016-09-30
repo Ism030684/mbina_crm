@@ -68,6 +68,11 @@ class Main extends CI_Controller {
 	
 	function leads_tot()
 	{
+		
+		
+		//exit;
+		//echo $this->session->userdata('id_users_role');exit;
+		//print_r($this->menu_model->get_menu());exit;
 		$data['menu_dashboard']=$this->menu_dashboard;
 		$data['menu_master']=$this->menu_master;
 		$data['menu_setting']=$this->menu_setting;
